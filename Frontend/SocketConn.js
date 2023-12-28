@@ -1,7 +1,6 @@
 let ws;
 let myName;
 let names;
-let opponentChoice;
 let p2Canvas;
 let p2ctx;
 

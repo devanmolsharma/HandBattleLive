@@ -33,9 +33,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 function initializeElements() {
-    document.getElementById("blurdiv").style.opacity = 1;
-    document.getElementById("plus1").css({ opacity: 0 });
-    document.getElementById("plus2").css({ opacity: 0 });
+    $(".blurdiv").css({ opacity: 0 });
+    $("#plus1").css({ opacity: 0 });
+    $("#plus2").css({ opacity: 0 });
     $(".plusPoint").css({ opacity: 0 });
 }
 
