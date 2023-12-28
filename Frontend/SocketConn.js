@@ -1,8 +1,14 @@
 let ws = new WebSocket('ws://192.168.100.183:8080')
 
+
 document.addEventListener('DOMContentLoaded', () => {
     let p2Canvas = document.getElementById("Player2Img");
     let p2ctx = p2Canvas.getContext('2d')
+
+    document.getElementById("startGame").addEventListener('click', () => {
+        ws.send("startGame");
+        startGame();
+    })
 
     ws.onopen = () => {
         ws.send("setName:" + location.href.split('?name=')[1].split("+").join(" "))
@@ -26,11 +32,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         else {
             if (message.data.indexOf('setNames') >= 0) {
-                console.log( message.data);
+                console.log(message.data);
                 names = JSON.parse(message.data.split("setNames:")[1]);
                 document.getElementById('p2Name').innerText = names.filter((n) => n != myName)[0]
-            } else
-                document.getElementById("positionPlayer2").innerText = message.data;
+            } if (message.data.indexOf('startGame') >= 0) {
+                startGame();
+            }
+            if (message.data.indexOf('reset') >= 0) {
+                reset();
+            }
+            else if (['Rock', 'Paper', 'Scissors'].indexOf(message.data) >= 0) {
+                let choice = message.data;
+                document.getElementById("positionPlayer2").innerText = choice;
+                opponentChoice = choice;
+            }
         }
     }
 
