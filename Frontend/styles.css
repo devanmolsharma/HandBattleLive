@@ -32,7 +32,9 @@ min-width: 100%;
 }
 
 .playerName{
+    color: white;
     max-height: 30px;
+    background-color: rgba(0, 56, 139, 0.781);
 }
 
 @media screen and (max-width:600px) {

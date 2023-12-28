@@ -5,10 +5,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let p2ctx = p2Canvas.getContext('2d')
 
     ws.onopen = () => {
+        ws.send("setName:" + location.href.split('?name=')[1].split("+").join(" "))
     }
 
 
     ws.onmessage = (message) => {
+        myName = location.href.split('?name=')[1].split("+").join(" ");;
+
+
+
         if (message.data.length > 40) {
             var img = new Image();
             img.onload = function () {
@@ -17,10 +22,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 p2ctx.drawImage(img, 0, 0); // Or at whatever offset you like
             };
             img.src = message.data;
-            
+
         }
-        else{
-            document.getElementById("positionPlayer2").innerText = message.data;
+        else {
+            if (message.data.indexOf('setNames') >= 0) {
+                console.log( message.data);
+                names = JSON.parse(message.data.split("setNames:")[1]);
+                document.getElementById('p2Name').innerText = names.filter((n) => n != myName)[0]
+            } else
+                document.getElementById("positionPlayer2").innerText = message.data;
         }
     }
 

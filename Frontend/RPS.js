@@ -13,6 +13,13 @@ let detector;
 let canvas;
 let ctx;
 
+function setNames() {
+    myName = location.href.split('?name=')[1]
+    if (myName)
+        document.getElementById('p1Name').innerText = myName.split("+").join(" ");
+    else location.href = 'Login.html'
+}
+
 function checkGesturePosition(hand) {
     const numFingersUP = hand.numFingersUp;
     if (numFingersUP === 0) {
@@ -62,6 +69,7 @@ function drawOnCanvas(ctx, video) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
+    setNames();
     detector = await handPoseDetection.createDetector(model, detectorConfig);
     canvas = document.createElement('canvas');
     ctx = canvas.getContext('2d');
