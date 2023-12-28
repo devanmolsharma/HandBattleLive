@@ -1,7 +1,15 @@
 .row>* {
-    width: 100%;
+    /* width: 100%; */
     flex: 1;
 }
+
+canvas {
+    max-height: 70vh;
+    width: 100%; /* Ensure the canvas takes the full width */
+    object-fit: cover; /* Crop the content to fit */
+    overflow: hidden; /* Hide any content that overflows the canvas */
+}
+
 
 .row {
     position: relative;
@@ -25,8 +33,9 @@
 
 #mainContainer {
     padding-top: 20px;
-    min-height: 100%;
-    min-width: 100%;
+    /* min-height: 100%; */
+    max-height: 90vh;
+    /* min-width: 100%; */
 }
 
 .result {
@@ -79,7 +88,7 @@
     top: 0px;
     left: 0px;
     opacity: 0;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(50px);
 }
 
 
@@ -87,7 +96,7 @@
     height: 40px;
     width: 150px; /* Adjust width as needed */
     position: fixed;
-    top: 10px; /* Adjust top position as needed */
+    top: 0px; /* Adjust top position as needed */
     right: 10px;
     border-radius: 30px; /* Half of the height for a circular button */
     margin: 10px;
@@ -108,7 +117,7 @@
 #reset {
     height: 40px;
     position: fixed;
-    top: 10px; /* Adjust top position as needed */
+    top: 0px; /* Adjust top position as needed */
     left: 10px;
     width: 80px; /* Adjust width as needed */
     border-radius: 20px; /* Half of the height for a circular button */

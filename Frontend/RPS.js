@@ -4,26 +4,50 @@ const detectorConfig = {
     solutionPath: 'https://cdn.jsdelivr.net/npm/@mediapipe/hands',
 };
 
-let opponentChoice = ""
-let myChoice = ""
-
-let opponentPoints = localStorage.getItem('opponentPoints') ?? 0;
-let myPoints = localStorage.getItem('myPoints') ?? 0;
+let opponentChoice = '';
+let myChoice = '';
+let opponentPoints = localStorage.getItem('opponentPoints') || 0;
+let myPoints = localStorage.getItem('myPoints') || 0;
 
 const constraints = {
     video: true,
     audio: false,
 };
 
-function setOpponentVisibility(visibile) {
-    document.getElementById("blurdiv").style.opacity = visibile ? 0 : 1;
+let detector;
+let canvas;
+let ctx;
+
+document.addEventListener('DOMContentLoaded', async () => {
+    initializeElements();
+    setNames();
+
+    $('#reset').bind('click', function (e) {
+        reset();
+    });
+
+    detector = await handPoseDetection.createDetector(model, detectorConfig);
+    canvas = document.createElement('canvas');
+    ctx = canvas.getContext('2d');
+    initializeVideo();
+});
+
+function initializeElements() {
+    document.getElementById("blurdiv").style.opacity = 1;
+    document.getElementById("plus1").css({ opacity: 0 });
+    document.getElementById("plus2").css({ opacity: 0 });
+    $(".plusPoint").css({ opacity: 0 });
+}
+
+function setOpponentVisibility(visible) {
+    document.getElementById("blurdiv").style.opacity = visible ? 0 : 1;
 }
 
 function processResults() {
     console.log(myChoice, opponentChoice, myChoice === opponentChoice);
-    // Determine the winner
+
     if (myChoice === opponentChoice) {
-        tie()
+        tie();
     } else if (
         (myChoice === 'Rock' && opponentChoice === 'Scissors') ||
         (myChoice === 'Paper' && opponentChoice === 'Rock') ||
@@ -31,15 +55,13 @@ function processResults() {
     ) {
         iWon();
     } else {
-        opponentWon()
+        opponentWon();
     }
 
-    updatePointsOnScreen()
+    updatePointsOnScreen();
     localStorage.setItem('opponentPoints', opponentPoints);
     localStorage.setItem('myPoints', myPoints);
 }
-
-
 
 function startGame() {
     setOpponentVisibility(false);
@@ -70,15 +92,12 @@ function tie() {
     opponentPoints++;
 }
 
-
 function showPointAddedOverlay(to) {
     if (to == 'me') {
         $("#plus1").css({ opacity: 1 });
-    }
-    if (to == 'opponent') {
+    } else if (to == 'opponent') {
         $("#plus2").css({ opacity: 1 });
-    }
-    if (to == 'both') {
+    } else if (to == 'both') {
         $(".plusPoint").css({ opacity: 1 });
     }
 
@@ -86,27 +105,26 @@ function showPointAddedOverlay(to) {
         $(".plusPoint").css({ opacity: 0 });
     }, 2000);
 }
-let detector;
-let canvas;
-let ctx;
 
 function setNames() {
-    myName = location.href.split('?name=')[1]
-    if (myName)
+    const myName = location.href.split('?name=')[1];
+    if (myName) {
         document.getElementById('p1Name').innerText = myName.split("+").join(" ");
-    else location.href = 'Login.html'
+    } else {
+        location.href = 'Login.html';
+    }
 }
 
 function checkGesturePosition(hand) {
     const numFingersUP = hand.numFingersUp;
     if (numFingersUP === 0) {
-        myChoice = "Rock"
+        myChoice = "Rock";
         return "Rock";
     } else if (numFingersUP === 2) {
-        myChoice = "Scissors"
+        myChoice = "Scissors";
         return "Scissors";
     } else if (numFingersUP > 3) {
-        myChoice = "Scissors"
+        myChoice = "Scissors";
         return "Paper";
     } else {
         return "Invalid hand position";
@@ -158,17 +176,5 @@ function reset() {
     myPoints = 0;
     opponentPoints = 0;
     updatePointsOnScreen();
-    ws.send("reset");
+    ws.send("resetPointsToZero");
 }
-
-document.addEventListener('DOMContentLoaded', async () => {
-    setNames();
-    $('#reset').bind('click', function (e) {
-        reset()
-    });
-
-    detector = await handPoseDetection.createDetector(model, detectorConfig);
-    canvas = document.createElement('canvas');
-    ctx = canvas.getContext('2d');
-    initializeVideo();
-});
