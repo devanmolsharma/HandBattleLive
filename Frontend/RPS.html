@@ -16,23 +16,26 @@
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/hand-pose-detection"></script>
+    <script src="./SocketConn.js"> </script><link rel="stylesheet" href="./styles.css">
     <script src="./HandParser.js"> </script>
     <script src="./RPS.js"> </script><link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
-    <div class="container mt-5 row"> <!-- Bootstrap container class with top margin -->
+    <div class="container mt-5 column" id="mainContainer"> <!-- Bootstrap container class with top margin -->
 
         <div class="row">
+            <div class="playerName">Anmol</div>
             <video autoplay="true" id="video" class="img-fluid"></video>
             <!-- Bootstrap img-fluid class for responsive video -->
 
-            <h5 class="mt-3"></h5> <!-- Bootstrap top margin -->
-            <div id="position" class="bg-primary text-light p-3">Rock</div> <!-- Bootstrap styling for the Rock div -->
+            <div id="position" class="bg-primary text-light p-3 result">Rock</div> <!-- Bootstrap styling for the Rock div -->
         </div>
-        <div>
-            <img src="https://picsum.photos/400/400" alt="Player2">
-            <div id="positionPlayer2" class="bg-primary text-light p-3">Rock</div> 
+        <div class = 'row'>
+            <div class="playerName">Anmol</div>
+           
+            <canvas id="Player2Img"></canvas>
+            <div id="positionPlayer2" class="bg-primary text-light p-3 result">Rock</div> 
         </div>
     </div>
 

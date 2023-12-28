@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Keep-up-sharma/RockPaperScissors/issues"
   },
-  "homepage": "https://github.com/Keep-up-sharma/RockPaperScissors#readme"
+  "homepage": "https://github.com/Keep-up-sharma/RockPaperScissors#readme",
+  "dependencies": {
+    "ws": "^8.16.0"
+  }
 }
