@@ -5,9 +5,12 @@
 
 canvas {
     max-height: 70vh;
-    width: 100%; /* Ensure the canvas takes the full width */
-    object-fit: cover; /* Crop the content to fit */
-    overflow: hidden; /* Hide any content that overflows the canvas */
+    width: 100%;
+    /* Ensure the canvas takes the full width */
+    object-fit: cover;
+    /* Crop the content to fit */
+    overflow: hidden;
+    /* Hide any content that overflows the canvas */
 }
 
 
@@ -40,6 +43,8 @@ canvas {
 
 .result {
     max-height: 50px;
+    opacity: 0;
+    transition: 1s;
 }
 
 .points {
@@ -58,13 +63,13 @@ canvas {
 }
 
 .plusPoint span {
-    color:black;
+    color: black;
     font-weight: bolder;
     font-size: 1.4em;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 }
 
 .playerName {
@@ -76,8 +81,8 @@ canvas {
 @media screen and (max-width:600px) {
     .column {
         flex-direction: column;
+        max-height: 100vh;
     }
-
 }
 
 #blurdiv {
@@ -94,43 +99,69 @@ canvas {
 
 #startGame {
     height: 40px;
-    width: 150px; /* Adjust width as needed */
+    width: 150px;
+    /* Adjust width as needed */
     position: fixed;
-    top: 0px; /* Adjust top position as needed */
+    top: 0px;
+    /* Adjust top position as needed */
     right: 10px;
-    border-radius: 30px; /* Half of the height for a circular button */
+    border-radius: 30px;
+    /* Half of the height for a circular button */
     margin: 10px;
-    background-color: #4CAF50; /* Green color */
-    border: 2px solid #357a38; /* Darker green border */
-    color: #fff; /* White text color */
-    font-size: 16px; /* Adjust font size as needed */
+    background-color: #4CAF50;
+    /* Green color */
+    border: 2px solid #357a38;
+    /* Darker green border */
+    color: #fff;
+    /* White text color */
+    font-size: 16px;
+    /* Adjust font size as needed */
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 #startGame:hover {
-    background-color: #45a049; /* Darker green on hover */
+    background-color: #45a049;
+    /* Darker green on hover */
 }
 
 
 #reset {
     height: 40px;
     position: fixed;
-    top: 0px; /* Adjust top position as needed */
+    top: 0px;
+    /* Adjust top position as needed */
     left: 10px;
-    width: 80px; /* Adjust width as needed */
-    border-radius: 20px; /* Half of the height for a circular button */
+    width: 80px;
+    /* Adjust width as needed */
+    border-radius: 20px;
+    /* Half of the height for a circular button */
     margin: 10px;
-    background-color: #e74c3c; /* Red color */
-    border: 2px solid #c0392b; /* Darker red border */
-    color: #fff; /* White text color */
-    font-size: 14px; /* Adjust font size as needed */
+    background-color: #e74c3c;
+    /* Red color */
+    border: 2px solid #c0392b;
+    /* Darker red border */
+    color: #fff;
+    /* White text color */
+    font-size: 14px;
+    /* Adjust font size as needed */
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 #reset:hover {
-    background-color: #d9534f; /* Darker red on hover */
+    background-color: #d9534f;
+    /* Darker red on hover */
+}
+
+#countdown {
+    z-index: 30;
+    position: absolute;
+    height: auto;
+    width: 100%;
+    top: 50%;
+    left: 0px;
+    transform: translate(0, -50%);
 }

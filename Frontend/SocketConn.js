@@ -58,7 +58,7 @@ function processGameData(data) {
     } else if (data.indexOf('startGame') >= 0) {
         startGame();
     } else if (data.indexOf('resetPointsToZero') >= 0) {
-        reset();
+        reset(false);
     } else if (['Rock', 'Paper', 'Scissors'].indexOf(data) >= 0) {
         updateOpponentChoice(data);
     }

@@ -1,14 +1,17 @@
 const model = handPoseDetection.SupportedModels.MediaPipeHands;
 const detectorConfig = {
     runtime: 'mediapipe',
+    modelType: 'lite',
     solutionPath: 'https://cdn.jsdelivr.net/npm/@mediapipe/hands',
 };
+
+
 
 let opponentChoice = '';
 let myChoice = '';
 let opponentPoints = localStorage.getItem('opponentPoints') || 0;
 let myPoints = localStorage.getItem('myPoints') || 0;
-
+let gameOn = false;
 const constraints = {
     video: true,
     audio: false,
@@ -37,14 +40,30 @@ function initializeElements() {
     $("#plus1").css({ opacity: 0 });
     $("#plus2").css({ opacity: 0 });
     $(".plusPoint").css({ opacity: 0 });
+    $(".result").css({ opacity: 0 });
 }
 
 function setOpponentVisibility(visible) {
     document.getElementById("blurdiv").style.opacity = visible ? 0 : 1;
 }
 
+function showCountDown(){
+    var countdownImage = $('<img>', {
+        src: './assets/countdown.gif',
+        alt: '',
+        id: 'countdown'
+    });
+
+    // Append the img element to the #p2 div
+    $('#p2').append(countdownImage);
+
+    // Remove the img element after 5 seconds
+    setTimeout(function () {
+        $('#countdown').remove();
+    }, 5000);
+}
+
 function processResults() {
-    console.log(myChoice, opponentChoice, myChoice === opponentChoice);
 
     if (myChoice === opponentChoice) {
         tie();
@@ -64,11 +83,20 @@ function processResults() {
 }
 
 function startGame() {
+    gameOn = true;
+    $(".result").css({ opacity: 1 });
     setOpponentVisibility(false);
+    showCountDown();
     setTimeout(() => {
         setOpponentVisibility(true);
         processResults();
-    }, 4000);
+        gameOn = false;
+        setTimeout(() => {
+            $(".result").css({ opacity: 0 });
+
+        }, 3000);
+    }, 5000);
+
 }
 
 function updatePointsOnScreen() {
@@ -138,12 +166,16 @@ function initializeVideo() {
         navigator.mediaDevices.getUserMedia(constraints)
             .then(function (stream) {
                 video.srcObject = stream;
+                setTimeout(() => {
+                    processHandEstimation();
+                    window.scrollTo(0,window.screen.height)
+                }, 2000);
                 setInterval(() => {
                     drawOnCanvas(ctx, video);
                     sendFrame(canvas.toDataURL("image/jpeg"));
                 }, 100);
 
-                setInterval(processHandEstimation, 300);
+                setInterval(() => { if (gameOn) processHandEstimation() }, 200);
             })
             .catch(function (error) {
                 console.log("Error accessing webcam:", error);
@@ -170,11 +202,12 @@ function drawOnCanvas(ctx, video) {
     ctx.drawImage(video, 0, 0, video.videoWidth * 0.3, video.videoHeight * 0.3);
 }
 
-function reset() {
+function reset(sendReset = true) {
     localStorage.removeItem("myPoints");
     localStorage.removeItem("opponentPoints");
     myPoints = 0;
     opponentPoints = 0;
     updatePointsOnScreen();
-    ws.send("resetPointsToZero");
+    if (sendReset)
+        ws.send("resetPointsToZero");
 }
