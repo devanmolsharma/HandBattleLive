@@ -39,7 +39,7 @@ The `frontend` folder consists of a simple HTML interface for the Rock-Paper-Sci
    ws = new WebSocket('ws://192.168.100.183:8080');
    ```
 
-3. Replace `'http://localhost:3000'` with the public IP address of your backend server (if you want to test locally on your wifi, use 'ipconfig' command in command prompt to get IPV4 ADDRESS) :
+3. Replace `'192.168.100.183'` with the public IP address of your backend server (if you want to test locally on your wifi, use `'ipconfig'` command in command prompt to get IPV4 ADDRESS) :
 
    ```javascript
    ws = new WebSocket('ws://YOUR_PUBLIC_IP:8080');
