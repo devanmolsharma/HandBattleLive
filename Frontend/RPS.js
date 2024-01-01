@@ -139,7 +139,7 @@ function setNames() {
     if (myName) {
         document.getElementById('p1Name').innerText = myName.split("+").join(" ");
     } else {
-        location.href = 'Login.html';
+        location.href = 'index.html';
     }
 }
 

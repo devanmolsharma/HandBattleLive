@@ -4,6 +4,10 @@ let names;
 let p2Canvas;
 let p2ctx;
 
+function initializeWebSocket() {
+    ws = new WebSocket('ws://192.168.100.183:8080');
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     initializeWebSocket();
     initializeGameElements();
@@ -15,9 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ws.onmessage = handleMessage;
 });
 
-function initializeWebSocket() {
-    ws = new WebSocket('ws://192.168.100.183:8080');
-}
 
 function initializeGameElements() {
     p2Canvas = document.getElementById("Player2Img");

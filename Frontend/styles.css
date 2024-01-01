@@ -7,7 +7,7 @@ canvas {
     max-height: 70vh;
     width: 100%;
     /* Ensure the canvas takes the full width */
-    object-fit: cover;
+    object-fit:contain;
     /* Crop the content to fit */
     overflow: hidden;
     /* Hide any content that overflows the canvas */
