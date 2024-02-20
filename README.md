@@ -63,7 +63,7 @@ This project is not just a game; it showcases the potential of gesture recogniti
 - **Node.js:** Backend server for game logic.
 - **Websockets:** Facilitates real-time communication between the frontend and backend.
 
-##Demo
+## Demo
 view a demonstration [here](https://www.linkedin.com/posts/devanmolsharma_webdev-ai-gesturerecognition-activity-7147444377047506944-0Y1S?utm_source=share&utm_medium=member_android)
 ## Contributing
 
