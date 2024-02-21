@@ -5,6 +5,7 @@ let p2Canvas;
 let p2ctx;
 
 function initializeWebSocket() {
+    // add ip here
     ws = new WebSocket('ws://192.168.100.183:8080');
 }
 
