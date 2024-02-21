@@ -1,0 +1,23 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend for rock paper scissors game",
+  "main": "App.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Keep-up-sharma/RockPaperScissors.git"
+  },
+  "author": "Anmol Sharma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Keep-up-sharma/RockPaperScissors/issues"
+  },
+  "homepage": "https://github.com/Keep-up-sharma/RockPaperScissors#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "ws": "^8.16.0"
+  }
+}
