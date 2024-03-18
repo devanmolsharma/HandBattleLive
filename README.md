@@ -1,41 +1,51 @@
-# Rock-Paper-Scissors with Hand Gesture Detection
+# HandBattleLive
 
-Welcome to the Rock-Paper-Scissors game with live hand gesture detection! This project combines the excitement of a classic game with the magic of machine learning for real-time gesture recognition.
-## Setup Instructions:
+Watch a demo [here](https://www.linkedin.com/posts/devanmolsharma_webdev-ai-gesturerecognition-activity-7147444377047506944-0Y1S?utm_source=share&utm_medium=member_android).
 
-1. Open `Frontend/SocketConn.js` in a code editor.
 
-2. Find this line:
+## Introduction
+Welcome to the HandBattleLive game with live hand gesture detection! This project combines the excitement of a classic game with the magic of machine learning for real-time gesture recognition.
+
+## Why
+HandBattleLive offers an innovative gaming experience by utilizing machine learning technology to detect hand gestures, enhancing interaction and engagement for players.
+
+## Get Started
+To set up HandBattleLive and start playing, follow these detailed instructions:
+
+1. **Update Socket Connection:**  
+   Open `Frontend/SocketConn.js` in your preferred code editor.
+
+2. **Replace IP Address:**  
+   Locate the following line:
    ```javascript
    ws = new WebSocket("ws://192.168.100.183:8080");
    ```
 
-3. Replace `'192.168.100.183'` with your public IP address:
+3. **Update IP Address:**  
+   Replace `'192.168.100.183'` with your public IP address:
    ```javascript
    ws = new WebSocket("ws://YOUR_PUBLIC_IP:8080");
    ```
 
-4. Save the file.
+4. **Save Changes:**  
+   Save the file after making the necessary modifications.
 
-## Running:
+5. **Running the Game:**  
+   - Execute `node app.js` to start the backend server.
+   - Open your server's IP address in a web browser to launch the game.
 
-- Run `node app.js`.
-- Open your server's IP address in a browser.
+## Contributing Guide
+Contributions to HandBattleLive are encouraged and valued. Follow these guidelines to contribute:
 
-## Real-Life Applications:
+- **Open Issues:** Report any bugs or suggest improvements by opening issues.
+- **Pull Requests:** Submit pull requests with enhancements or fixes.
 
-This project demonstrates how gesture recognition can be used beyond games, such as in sign language communication or improving human-computer interaction.
+Your contributions help enhance the gaming experience for all players!
 
-## Technologies Used:
+## TODOS
+- Implement additional gestures for enhanced gameplay.
+- Enhance user interface for better accessibility.
+- Optimize gesture detection algorithms for improved accuracy.
 
-- **TensorFlow:** Powers hand gesture detection.
-- **Node.js:** Backend server.
-- **Websockets:** Facilitates real-time communication.
-
-## Demo:
-
-Watch a demo [here](https://www.linkedin.com/posts/devanmolsharma_webdev-ai-gesturerecognition-activity-7147444377047506944-0Y1S?utm_source=share&utm_medium=member_android).
-
-## Contributing:
-
-Feel free to contribute by opening issues or submitting pull requests. Your ideas are welcome!
+## License
+HandBattleLive is licensed under the Apache License. See the [LICENSE](link-to-license-file) file for details.
