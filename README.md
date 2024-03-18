@@ -48,4 +48,4 @@ Your contributions help enhance the gaming experience for all players!
 - Optimize gesture detection algorithms for improved accuracy.
 
 ## License
-HandBattleLive is licensed under the Apache License. See the [LICENSE](link-to-license-file) file for details.
+HandBattleLive is licensed under the Apache License. 
